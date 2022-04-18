@@ -2,6 +2,7 @@ package com.fantasy.tbs.service;
 
 import com.fantasy.tbs.domain.TimeBookDTO;
 import com.fantasy.tbs.domain.TimeBooking;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,7 @@ public interface TimeBookingService {
      * @param timeBookDTO
      */
     void bookTime(TimeBookDTO timeBookDTO);
-    
+
     /**
      * method1: retrieve how many hours an employee worked
      *
@@ -63,4 +64,5 @@ public interface TimeBookingService {
      * @param errorList
      */
     String getWorkTime(String personalNumber, ZonedDateTime startTime, ZonedDateTime endTime, List<String> errorList);
+
 }
