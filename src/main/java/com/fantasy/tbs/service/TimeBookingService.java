@@ -53,4 +53,14 @@ public interface TimeBookingService {
      * @param timeBookDTO
      */
     void bookTime(TimeBookDTO timeBookDTO);
+    
+    /**
+     * method1: retrieve how many hours an employee worked
+     *
+     * @param personalNumber
+     * @param startTime
+     * @param endTime
+     * @param errorList
+     */
+    String getWorkTime(String personalNumber, ZonedDateTime startTime, ZonedDateTime endTime, List<String> errorList);
 }
