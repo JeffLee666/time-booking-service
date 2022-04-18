@@ -5,12 +5,18 @@ import com.fantasy.tbs.domain.TimeBooking;
 import com.fantasy.tbs.repository.TimeBookingRepository;
 import com.fantasy.tbs.service.TimeBookingService;
 import com.fantasy.tbs.service.mapper.TimeBookMapper;
+import java.text.DecimalFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import liquibase.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Service Implementation for managing {@link TimeBooking}.
@@ -80,7 +86,7 @@ public class TimeBookingServiceImpl implements TimeBookingService {
     public void bookTime(TimeBookDTO timeBookDTO) {
         timeBookingRepository.save(timeBookMapper.toTimeBooking(timeBookDTO));
     }
-    
+
     @Override
     @Transactional(readOnly = true)
     public String getWorkTime(String personalNumber, ZonedDateTime startTime,
