@@ -64,7 +64,7 @@ public class InformForgotServiceImpl implements InformForgotService {
         try {
             int totalNum = timeBookingRepository.countForgotEmployees(checkTime);
             int iterateNum = totalNum / PAGE_SIZE + (totalNum % PAGE_SIZE != 0 ? 1 : 0);
-            CountDownLatch latch = new CountDownLatch(iterateNum);
+            CountDownLatch latch = new CountDownLatch(THREAD_NUM);
             ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(THREAD_NUM);
             long startTime = System.currentTimeMillis();
             RunnableTask.start = -PAGE_SIZE;
