@@ -74,7 +74,7 @@ public class InformForgotServiceImpl implements InformForgotService {
                 newFixedThreadPool.execute(task);
             }
             latch.await();
-            System.out.println(String.format("任务执行成功,耗时{%s}毫秒", System.currentTimeMillis() - startTime));
+            System.out.println(String.format("====Tasks complete, consumption: {%s} ms====", System.currentTimeMillis() - startTime));
             newFixedThreadPool.shutdown();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -83,7 +83,6 @@ public class InformForgotServiceImpl implements InformForgotService {
 
     private static class RunnableTask implements Runnable {
 
-        private final Logger log = LoggerFactory.getLogger(RunnableTask.class);
         public static Integer start;
         private int pageSize;
         private int totalNum;
@@ -118,11 +117,12 @@ public class InformForgotServiceImpl implements InformForgotService {
                     startNum = start;
                 }
                 List<String> forgotEmployees = timeBookingRepository.getForgotEmployees(checkTime, startNum, pageSize);
+                System.out.println("=====result=====" + forgotEmployees);
                 for (String personalNumber : forgotEmployees) {
                     //TODO: same as the suggestion above.
                 }
                 int result = start + pageSize;
-                log.info(Thread.currentThread().getName() + "startNum =" + startNum + " pageSize=" + result);
+                System.out.println(Thread.currentThread().getName() + "startNum =" + startNum + " pageSize=" + result);
             }
         }
     }
